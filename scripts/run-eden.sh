@@ -1,5 +1,7 @@
 RUNDIR=run/eden
 
+which eden
+
 rm -fr "${RUNDIR}"
 mkdir -p "${RUNDIR}"
 

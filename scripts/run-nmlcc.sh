@@ -1,5 +1,8 @@
 RUNDIR=run/nmlcc
 
+which nmlcc
+python3 -c 'import arbor; print(arbor.__path__)'
+
 rm -fr "${RUNDIR}"
 mkdir -p "${RUNDIR}"
 
