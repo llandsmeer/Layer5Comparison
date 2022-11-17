@@ -1,8 +1,11 @@
 # Layer5Comparison
 
-```
-pip3 install eden arbor
-```
+Run setup-env.sh to create a environment with versioned simulators
+
+Required dependencies
+
+ - `java` (for pyNeuroML)
+ - `cargo` (for nmlcc)
 
 
 Sources:

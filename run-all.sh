@@ -3,8 +3,20 @@
 
 . env/bin/activate
 
-set -x
+run () {
+    echo "################################################################################"
+    echo "# Running $1 #"
+    echo "################################################################################"
+    bash "$1" | python3 scripts/miniterm.py
+    echo
+    echo
+}
 
-bash scripts/run-eden.sh
-bash scripts/run-nmlcc.sh
-bash scripts/run-nmlcc-super.sh
+run scripts/run-nmlcc.sh
+
+run scripts/run-nmlcc-super.sh
+
+run scripts/run-neuron.sh
+
+run scripts/run-eden.sh
+
