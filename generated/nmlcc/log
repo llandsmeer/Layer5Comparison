@@ -1,0 +1,25 @@
+[2mNov 22 15:10:31.759[0m [33m WARN[0m No temperature given, resorting to 0K!
+[2mNov 22 15:10:31.769[0m [33m WARN[0m No idea where to put item RDF of type RDF in None
+[2mNov 22 15:10:31.769[0m [33m WARN[0m No idea where to put item RDF of type RDF in None
+[2mNov 22 15:10:31.769[0m [33m WARN[0m No idea where to put item RDF of type RDF in None
+[2mNov 22 15:10:31.770[0m [33m WARN[0m Variable 'gates/m/forwardRate/r' default case undefined, assuming zero.
+[2mNov 22 15:10:31.770[0m [33m WARN[0m Variable 'gates/m/reverseRate/r' default case undefined, assuming zero.
+[2mNov 22 15:10:31.770[0m [33m WARN[0m Variable 'gates/h/forwardRate/r' default case undefined, assuming zero.
+[2mNov 22 15:10:31.770[0m [33m WARN[0m Variable 'gates/h/reverseRate/r' default case undefined, assuming zero.
+[2mNov 22 15:10:31.770[0m [33m WARN[0m No idea where to put item RDF of type RDF in None
+[2mNov 22 15:10:31.771[0m [33m WARN[0m Variable 'gates/m/forwardRate/r' default case undefined, assuming zero.
+[2mNov 22 15:10:31.771[0m [33m WARN[0m Variable 'gates/m/reverseRate/r' default case undefined, assuming zero.
+[2mNov 22 15:10:31.771[0m [33m WARN[0m Variable 'gates/h/forwardRate/r' default case undefined, assuming zero.
+[2mNov 22 15:10:31.771[0m [33m WARN[0m Variable 'gates/h/reverseRate/r' default case undefined, assuming zero.
+[2mNov 22 15:10:31.782[0m [33m WARN[0m No idea where to put item RDF of type RDF in None
+[2mNov 22 15:10:31.782[0m [33m WARN[0m No idea where to put item RDF of type RDF in None
+[2mNov 22 15:10:31.783[0m [33m WARN[0m No idea where to put item RDF of type RDF in None
+[2mNov 22 15:10:31.784[0m [33m WARN[0m No idea where to put item RDF of type RDF in None
+[2mNov 22 15:10:31.784[0m [33m WARN[0m Variable 'gates/m/forwardRate/r' default case undefined, assuming zero.
+[2mNov 22 15:10:31.784[0m [33m WARN[0m No idea where to put item RDF of type RDF in None
+[2mNov 22 15:10:31.785[0m [33m WARN[0m No idea where to put item RDF of type RDF in None
+[2mNov 22 15:10:31.785[0m [33m WARN[0m Variable 'gates/m/forwardRate/r' default case undefined, assuming zero.
+
+real	0m0,053s
+user	0m0,041s
+sys	0m0,012s
