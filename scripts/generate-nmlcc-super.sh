@@ -7,7 +7,7 @@ rm -fr "${OUT}"
 mkdir -p "${OUT}"
 
 (
-    time nmlcc bundle -s NeuroML/TestL5PC.net.nml "${OUT}"
+    time nmlcc bundle -s L5bPyrCellHayEtAl2011/neuroConstruct/generatedNeuroML2/TestL5PC.net.nml "${OUT}"
 ) 2>&1 | tee "${OUT}/log"
 
 

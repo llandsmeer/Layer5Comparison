@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 
-
-. env/bin/activate
+# . env/bin/activate
 
 run () {
     echo "################################################################################"
@@ -14,6 +13,7 @@ run () {
 
 run scripts/generate-nmlcc.sh
 run scripts/generate-nmlcc-super.sh
+run scripts/generate-neuron.sh
 
 # run scripts/run-neuron.sh
 # run scripts/run-eden.sh

@@ -1,3 +1,5 @@
 /run/
 /env/
 *.so
+/results/
+/generated/x86_64

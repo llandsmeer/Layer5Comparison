@@ -1,22 +1,28 @@
 #!/usr/bin/env python3
 
 import os, sys
+import json
 import importlib.util
+import pandas as pd
 import subprocess as sp
 from pathlib import Path
 from time import perf_counter as pc
 
 ARBOR_BUILD_CATALOGUE = 'arbor-build-catalogue'
-nmlcc_root = Path('../generated/nmlcc')
 
 
 import arbor as A
 
-if len(sys.argv) != 2:
-    print('usage:', sys.argv[0], '<4a|4b|5a>')
+if len(sys.argv) < 4:
+    print('usage:', sys.argv[0], '<path-in-generated>', '<4a|4b|5a>', '<dt>')
     exit(1)
 
-FIGURE = sys.argv[1]
+VERSION = sys.argv[1]
+FIGURE = sys.argv[2]
+dt = float(sys.argv[3])
+PLOT = '--plot' in sys.argv
+
+nmlcc_root = Path('../generated') / VERSION
 
 HOC_FILE = {
         '4a': 'BAC_firing.hoc',
@@ -119,53 +125,44 @@ ddc = A.partition_load_balance(mdl, ctx)
 sim = A.simulation(mdl, ctx, ddc)
 hdl = sim.sample((0, 0), A.regular_schedule(0.1))
 
-print('Running simulation for 1s...')
-t0 = pc()
 if FIGURE == '4b':
-    sim.run(3000, 0.025*5)
+    length = 3000
 else:
-    sim.run(600, 0.025*5)
+    length = 600
+print(f'Running simulation for {length}ms...')
+
+t0 = pc()
+sim.run(length, dt)
 t1 = pc()
 print(f'Simulation done, took: {t1-t0:.3f}s')
 
-print('Trying to plot...')
+(data, meta), = sim.samples(hdl)
+df = pd.DataFrame({'t/ms': data[:, 0], 'U/mV': data[:, 1]})
+i = 0
+while True:
+    fn = f'../results/results_nmlcc_{VERSION}_{FIGURE}_{dt}_{i}.csv'
+    if not os.path.exists(fn):
+        break
+    i = i + 1
+df.to_csv(fn)
+print('Saved results to', fn)
 
-import os
-import numpy as np
-import matplotlib.pyplot as plt
+with open(f'../results/runtimes', 'a') as f:
+    logline = json.dumps(dict(
+        method='nmlcc',
+        version=VERSION,
+        walltime_s=(t1-t0),
+        dt=dt,
+        simtime_ms=length,
+        figure=FIGURE,
+        results=fn,
+        ))
+    print(logline, file=f)
 
-if False:
-    if FIGURE == '4b':
-        os.system('sh /home/llandsmeer/repos/opensourcebrain/L5bPyrCellHayEtAl2011/NEURON/models/c')
-    elif FIGURE == '4a':
-        os.system('sh /home/llandsmeer/repos/opensourcebrain/L5bPyrCellHayEtAl2011/NEURON/models/4a')
-    else:
-        os.system('sh /home/llandsmeer/repos/opensourcebrain/L5bPyrCellHayEtAl2011/NEURON/models/5a')
-
-    nrn_v = np.loadtxt('/home/llandsmeer/repos/opensourcebrain/L5bPyrCellHayEtAl2011/NEURON/simulationcode/v.dat')
-    nrn_t = np.loadtxt('/home/llandsmeer/repos/opensourcebrain/L5bPyrCellHayEtAl2011/NEURON/simulationcode/t.dat')
-    plt.plot(nrn_t, nrn_v, color='gray', label='Neuron')
-
-plt.title(f'Comparison figure {FIGURE.upper()} ({HOC_FILE[FIGURE]})')
-
-for data, meta in sim.samples(hdl):
-  t = data[:, 0]
-  v = data[:, 1]
-  plt.plot(t, v, label='Arbor')
-
-plt.legend()
-plt.xlabel('Time (ms)')
-plt.ylabel('Vsoma (mV)')
-
-if FIGURE == '4a':
-    plt.xlim([250, 400])
-elif FIGURE == '4b':
-    pass
-else:
-    plt.xlim([200, 400])
-
-# plt.savefig(f'comparison_{FIGURE}.png')
-# plt.savefig(f'comparison_{FIGURE}.svg')
-plt.show()
-
-
+if PLOT:
+    import matplotlib.pyplot as plt
+    plt.plot(data[:, 0], data[:, 1])
+    plt.xlabel('t (ms)')
+    plt.ylabel('U (mV)')
+    plt.title(f'nmlcc figure {FIGURE}')
+    plt.show()

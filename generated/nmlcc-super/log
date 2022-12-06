@@ -1,48 +1,51 @@
-[2mNov 22 15:10:31.895[0m [33m WARN[0m No temperature given, resorting to 0K!
-[2mNov 22 15:10:31.905[0m [33m WARN[0m No idea where to put item RDF of type RDF in None
-[2mNov 22 15:10:31.905[0m [33m WARN[0m No idea where to put item RDF of type RDF in None
-[2mNov 22 15:10:31.905[0m [33m WARN[0m No idea where to put item RDF of type RDF in None
-[2mNov 22 15:10:31.906[0m [33m WARN[0m Variable 'gates/m/forwardRate/r' default case undefined, assuming zero.
-[2mNov 22 15:10:31.906[0m [33m WARN[0m Variable 'gates/m/reverseRate/r' default case undefined, assuming zero.
-[2mNov 22 15:10:31.906[0m [33m WARN[0m Variable 'gates/h/forwardRate/r' default case undefined, assuming zero.
-[2mNov 22 15:10:31.906[0m [33m WARN[0m Variable 'gates/h/reverseRate/r' default case undefined, assuming zero.
-[2mNov 22 15:10:31.906[0m [33m WARN[0m No idea where to put item RDF of type RDF in None
-[2mNov 22 15:10:31.906[0m [33m WARN[0m Variable 'gates/m/forwardRate/r' default case undefined, assuming zero.
-[2mNov 22 15:10:31.906[0m [33m WARN[0m Variable 'gates/m/reverseRate/r' default case undefined, assuming zero.
-[2mNov 22 15:10:31.906[0m [33m WARN[0m Variable 'gates/h/forwardRate/r' default case undefined, assuming zero.
-[2mNov 22 15:10:31.906[0m [33m WARN[0m Variable 'gates/h/reverseRate/r' default case undefined, assuming zero.
-[2mNov 22 15:10:31.917[0m [33m WARN[0m No idea where to put item RDF of type RDF in None
-[2mNov 22 15:10:31.918[0m [33m WARN[0m No idea where to put item RDF of type RDF in None
-[2mNov 22 15:10:31.919[0m [33m WARN[0m No idea where to put item RDF of type RDF in None
-[2mNov 22 15:10:31.919[0m [33m WARN[0m No idea where to put item RDF of type RDF in None
-[2mNov 22 15:10:31.919[0m [33m WARN[0m Variable 'gates/m/forwardRate/r' default case undefined, assuming zero.
-[2mNov 22 15:10:31.920[0m [33m WARN[0m No idea where to put item RDF of type RDF in None
-[2mNov 22 15:10:31.921[0m [33m WARN[0m No idea where to put item RDF of type RDF in None
-[2mNov 22 15:10:31.921[0m [33m WARN[0m Variable 'gates/m/forwardRate/r' default case undefined, assuming zero.
-[2mNov 22 15:10:31.921[0m [33m WARN[0m No idea where to put item RDF of type RDF in None
-[2mNov 22 15:10:31.921[0m [33m WARN[0m No idea where to put item RDF of type RDF in None
-[2mNov 22 15:10:31.922[0m [33m WARN[0m No idea where to put item RDF of type RDF in None
-[2mNov 22 15:10:31.922[0m [33m WARN[0m No idea where to put item RDF of type RDF in None
-[2mNov 22 15:10:31.932[0m [33m WARN[0m No idea where to put item RDF of type RDF in None
-[2mNov 22 15:10:31.933[0m [33m WARN[0m No idea where to put item RDF of type RDF in None
-[2mNov 22 15:10:31.933[0m [33m WARN[0m No idea where to put item RDF of type RDF in None
-[2mNov 22 15:10:31.933[0m [33m WARN[0m No idea where to put item RDF of type RDF in None
-[2mNov 22 15:10:31.933[0m [33m WARN[0m No idea where to put item RDF of type RDF in None
-[2mNov 22 15:10:31.933[0m [33m WARN[0m No idea where to put item RDF of type RDF in None
-[2mNov 22 15:10:31.933[0m [33m WARN[0m Variable 'NaTa_t/gates/m/forwardRate/r' default case undefined, assuming zero.
-[2mNov 22 15:10:31.933[0m [33m WARN[0m Variable 'NaTa_t/gates/m/reverseRate/r' default case undefined, assuming zero.
-[2mNov 22 15:10:31.933[0m [33m WARN[0m Variable 'NaTa_t/gates/h/forwardRate/r' default case undefined, assuming zero.
-[2mNov 22 15:10:31.933[0m [33m WARN[0m Variable 'NaTa_t/gates/h/reverseRate/r' default case undefined, assuming zero.
-[2mNov 22 15:10:31.935[0m [33m WARN[0m Variable 'Ih/gates/m/forwardRate/r' default case undefined, assuming zero.
-[2mNov 22 15:10:31.936[0m [33m WARN[0m Variable 'Nap_Et2/gates/m/forwardRate/r' default case undefined, assuming zero.
-[2mNov 22 15:10:31.936[0m [33m WARN[0m Variable 'Nap_Et2/gates/m/reverseRate/r' default case undefined, assuming zero.
-[2mNov 22 15:10:31.936[0m [33m WARN[0m Variable 'Nap_Et2/gates/h/forwardRate/r' default case undefined, assuming zero.
-[2mNov 22 15:10:31.936[0m [33m WARN[0m Variable 'Nap_Et2/gates/h/reverseRate/r' default case undefined, assuming zero.
-[2mNov 22 15:10:31.936[0m [33m WARN[0m Variable 'NaTa_t/gates/m/forwardRate/r' default case undefined, assuming zero.
-[2mNov 22 15:10:31.936[0m [33m WARN[0m Variable 'NaTa_t/gates/m/reverseRate/r' default case undefined, assuming zero.
-[2mNov 22 15:10:31.936[0m [33m WARN[0m Variable 'NaTa_t/gates/h/forwardRate/r' default case undefined, assuming zero.
-[2mNov 22 15:10:31.936[0m [33m WARN[0m Variable 'NaTa_t/gates/h/reverseRate/r' default case undefined, assuming zero.
+[2mDec 06 14:20:28.458[0m [33m WARN[0m No temperature given, resorting to 0K!
+[2mDec 06 14:20:28.468[0m [33m WARN[0m No idea where to put item RDF of type RDF in None
+[2mDec 06 14:20:28.468[0m [33m WARN[0m No idea where to put item RDF of type RDF in None
+[2mDec 06 14:20:28.469[0m [33m WARN[0m No idea where to put item RDF of type RDF in None
+[2mDec 06 14:20:28.469[0m [33m WARN[0m Variable 'gates/m/forwardRate/r' default case undefined, assuming zero.
+[2mDec 06 14:20:28.469[0m [33m WARN[0m Variable 'gates/m/reverseRate/r' default case undefined, assuming zero.
+[2mDec 06 14:20:28.469[0m [33m WARN[0m Variable 'gates/h/forwardRate/r' default case undefined, assuming zero.
+[2mDec 06 14:20:28.469[0m [33m WARN[0m Variable 'gates/h/reverseRate/r' default case undefined, assuming zero.
+[2mDec 06 14:20:28.469[0m [33m WARN[0m No idea where to put item RDF of type RDF in None
+[2mDec 06 14:20:28.470[0m [33m WARN[0m Variable 'gates/m/forwardRate/r' default case undefined, assuming zero.
+[2mDec 06 14:20:28.470[0m [33m WARN[0m Variable 'gates/m/reverseRate/r' default case undefined, assuming zero.
+[2mDec 06 14:20:28.470[0m [33m WARN[0m Variable 'gates/h/forwardRate/r' default case undefined, assuming zero.
+[2mDec 06 14:20:28.470[0m [33m WARN[0m Variable 'gates/h/reverseRate/r' default case undefined, assuming zero.
+[2mDec 06 14:20:28.480[0m [33m WARN[0m No idea where to put item RDF of type RDF in None
+[2mDec 06 14:20:28.481[0m [33m WARN[0m No idea where to put item RDF of type RDF in None
+[2mDec 06 14:20:28.482[0m [33m WARN[0m No idea where to put item RDF of type RDF in None
+[2mDec 06 14:20:28.482[0m [33m WARN[0m No idea where to put item RDF of type RDF in None
+[2mDec 06 14:20:28.483[0m [33m WARN[0m Variable 'gates/m/forwardRate/r' default case undefined, assuming zero.
+[2mDec 06 14:20:28.483[0m [33m WARN[0m No idea where to put item RDF of type RDF in None
+[2mDec 06 14:20:28.484[0m [33m WARN[0m No idea where to put item RDF of type RDF in None
+[2mDec 06 14:20:28.484[0m [33m WARN[0m Variable 'gates/m/forwardRate/r' default case undefined, assuming zero.
+[2mDec 06 14:20:28.485[0m [33m WARN[0m No idea where to put item RDF of type RDF in None
+[2mDec 06 14:20:28.485[0m [33m WARN[0m No idea where to put item RDF of type RDF in None
+[2mDec 06 14:20:28.485[0m [33m WARN[0m No idea where to put item RDF of type RDF in None
+[2mDec 06 14:20:28.485[0m [33m WARN[0m No idea where to put item RDF of type RDF in None
+[2mDec 06 14:20:28.496[0m [33m WARN[0m No idea where to put item RDF of type RDF in None
+[2mDec 06 14:20:28.497[0m [33m WARN[0m No idea where to put item RDF of type RDF in None
+[2mDec 06 14:20:28.497[0m [33m WARN[0m No idea where to put item RDF of type RDF in None
+[2mDec 06 14:20:28.497[0m [33m WARN[0m No idea where to put item RDF of type RDF in None
+[2mDec 06 14:20:28.497[0m [33m WARN[0m No idea where to put item RDF of type RDF in None
+[2mDec 06 14:20:28.497[0m [33m WARN[0m No idea where to put item RDF of type RDF in None
+[2mDec 06 14:20:28.498[0m [33m WARN[0m Variable 'NaTa_t/gates/m/forwardRate/r' default case undefined, assuming zero.
+[2mDec 06 14:20:28.498[0m [33m WARN[0m Variable 'NaTa_t/gates/m/reverseRate/r' default case undefined, assuming zero.
+[2mDec 06 14:20:28.498[0m [33m WARN[0m Variable 'NaTa_t/gates/h/forwardRate/r' default case undefined, assuming zero.
+[2mDec 06 14:20:28.498[0m [33m WARN[0m Variable 'NaTa_t/gates/h/reverseRate/r' default case undefined, assuming zero.
+[2mDec 06 14:20:28.498[0m [33m WARN[0m Variable 'Ih/gates/m/forwardRate/r' default case undefined, assuming zero.
+[2mDec 06 14:20:28.498[0m [33m WARN[0m Variable 'Ca_HVA/gates/m/forwardRate/r' default case undefined, assuming zero.
+[2mDec 06 14:20:28.500[0m [33m WARN[0m Variable 'Ih/gates/m/forwardRate/r' default case undefined, assuming zero.
+[2mDec 06 14:20:28.502[0m [33m WARN[0m Variable 'Nap_Et2/gates/m/forwardRate/r' default case undefined, assuming zero.
+[2mDec 06 14:20:28.502[0m [33m WARN[0m Variable 'Nap_Et2/gates/m/reverseRate/r' default case undefined, assuming zero.
+[2mDec 06 14:20:28.502[0m [33m WARN[0m Variable 'Nap_Et2/gates/h/forwardRate/r' default case undefined, assuming zero.
+[2mDec 06 14:20:28.502[0m [33m WARN[0m Variable 'Nap_Et2/gates/h/reverseRate/r' default case undefined, assuming zero.
+[2mDec 06 14:20:28.502[0m [33m WARN[0m Variable 'NaTa_t/gates/m/forwardRate/r' default case undefined, assuming zero.
+[2mDec 06 14:20:28.502[0m [33m WARN[0m Variable 'NaTa_t/gates/m/reverseRate/r' default case undefined, assuming zero.
+[2mDec 06 14:20:28.502[0m [33m WARN[0m Variable 'NaTa_t/gates/h/forwardRate/r' default case undefined, assuming zero.
+[2mDec 06 14:20:28.502[0m [33m WARN[0m Variable 'NaTa_t/gates/h/reverseRate/r' default case undefined, assuming zero.
+[2mDec 06 14:20:28.502[0m [33m WARN[0m Variable 'Ca_HVA/gates/m/forwardRate/r' default case undefined, assuming zero.
 
-real	0m0,062s
-user	0m0,050s
-sys	0m0,012s
+real	0m0,065s
+user	0m0,058s
+sys	0m0,008s

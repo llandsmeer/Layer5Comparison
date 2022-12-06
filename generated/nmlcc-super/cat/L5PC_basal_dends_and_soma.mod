@@ -1,6 +1,11 @@
 NEURON {
   SUFFIX L5PC_basal_dends_and_soma
   NONSPECIFIC_CURRENT ihcn
+  RANGE Ih_conductance
+}
+
+PARAMETER {
+  Ih_conductance = 0.00020000000298023223 (S_per_cm2)
 }
 
 STATE { Ih_gates_m_q }
@@ -46,7 +51,7 @@ BREAKPOINT {
   SOLVE dstate METHOD cnexp
   LOCAL Ih_g
 
-  Ih_g = 0.00020000000298023223 * Ih_gates_m_q
+  Ih_g = Ih_conductance * Ih_gates_m_q
   ihcn = Ih_g * (45 + v)
 }
 
