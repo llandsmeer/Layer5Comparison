@@ -1,11 +1,17 @@
 #!/usr/bin/env python3
 
+import sys
 import numpy as np
 import pandas as pd
 import json
 import matplotlib.pyplot as plt
 
-df = pd.DataFrame.from_records(map(json.loads, open('./results/runtimes')))
+if len(sys.argv) >= 2:
+    filename = sys.argv[1]
+else:
+    filename = './results/runtimes'
+
+df = pd.DataFrame.from_records(map(json.loads, open(filename)))
 
 for figure, sub in df.groupby('figure'):
     print(f'# Performance analysis for figure {figure}')
@@ -19,16 +25,16 @@ for figure, sub in df.groupby('figure'):
         walltime_s = sub.groupby('version')['walltime_s'].min()
         counts = sub.groupby('version')['walltime_s'].count()
         simtime_s = sub.groupby('version')['simtime_ms'].first() / 1000
-        for k, v in sorted(dict(100 * walltime_s / walltime_s.min()).items(), key=lambda x: x[1]):
+        slowdown = walltime_s/simtime_s
+        for k, v in sorted(dict(100 * slowdown / slowdown.min()).items(), key=lambda x: x[1]):
             v = v - 100
             if np.isclose(v, 0):
                 rel = f'(fastest)'
             else:
                 rel = f'({v:.3f}% slower)'
-            slowdown = walltime_s[k]/simtime_s[k]
             print('   ',
                     k.ljust(20),
-                    f'{slowdown:.2f} sim.s/bio.s'.ljust(20),
+                    f'{slowdown[k]:.2f} sim.s/bio.s'.ljust(20),
                     rel.ljust(20),
                     f'{counts[k]} trials'
                     )
