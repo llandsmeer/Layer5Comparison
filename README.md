@@ -1,12 +1,13 @@
 # Layer5Comparison
 
+<img src="5a.svg"></img>
+
 Run setup-env.sh to create a environment with versioned simulators
 
 Required dependencies
 
  - `java` (for pyNeuroML)
  - `cargo` (for nmlcc)
-
 
 Sources:
 
