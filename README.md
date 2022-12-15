@@ -1,6 +1,21 @@
 # Layer5Comparison
 
+## Performance analysis for figure 4b
+
+analysis for dt=0.025
+
+
+| Config      | Run time         | Relative        | _        |
+|-------------|------------------|-----------------|----------|
+| nmlcc-super | 1.14 sim.s/bio.s | fastest         | 5 trials |
+| nmlcc       | 1.33 sim.s/bio.s | 16.598% slower  | 5 trials |
+| neuron      | 5.84 sim.s/bio.s | 411.810% slower | 5 trials |
+
+## Plot of 5a
+
 <img src="5a.svg"></img>
+
+## ??
 
 Run setup-env.sh to create a environment with versioned simulators
 
