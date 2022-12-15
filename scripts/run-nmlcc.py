@@ -88,7 +88,14 @@ class recipe(A.recipe):
             for seg, frac in self.gid_to_labels[gid]:
                 lbl[f'seg_{seg}_frac_{frac}'] = f'(on-components {frac} (segment {seg}))'
         dec = A.load_component(f'{nmlcc_root}/acc/{cid}.acc').component
-        dec.discretization(A.cv_policy_every_segment())
+
+
+        #  forsec all {
+        #    nseg = 1 + 2*int(L/40)
+        #    nSec = nSec + 1
+        #  }
+        dec.discretization(A.cv_policy_max_extent(20))
+
         if gid in self.gid_to_inputs:
             for tag, inp in self.gid_to_inputs[gid]:
                 x = self.i_clamps[inp]
@@ -119,11 +126,17 @@ class recipe(A.recipe):
                 res.append(conn)
         return res
 
-ctx = A.context()
+
+ctx = A.context(threads=1)
+meter_manager = A.meter_manager()
+meter_manager.start(ctx)
 mdl = recipe()
+meter_manager.checkpoint('recipe-create', ctx)
 ddc = A.partition_load_balance(mdl, ctx)
+meter_manager.checkpoint('load-balance', ctx)
 sim = A.simulation(mdl, ctx, ddc)
-hdl = sim.sample((0, 0), A.regular_schedule(0.1))
+meter_manager.checkpoint('simulation-init', ctx)
+hdl = sim.sample((0, 0), A.regular_schedule(1))
 
 if FIGURE == '4b':
     length = 3000
@@ -135,6 +148,7 @@ t0 = pc()
 sim.run(length, dt)
 t1 = pc()
 print(f'Simulation done, took: {t1-t0:.3f}s')
+meter_manager.checkpoint('simulation-run', ctx)
 
 (data, meta), = sim.samples(hdl)
 df = pd.DataFrame({'t/ms': data[:, 0], 'U/mV': data[:, 1]})
@@ -159,6 +173,8 @@ with open(f'../results/runtimes', 'a') as f:
         ))
     print(logline, file=f)
 
+print(A.meter_report(meter_manager, ctx))
+
 if PLOT:
     import matplotlib.pyplot as plt
     plt.plot(data[:, 0], data[:, 1])
@@ -166,3 +182,4 @@ if PLOT:
     plt.ylabel('U (mV)')
     plt.title(f'nmlcc figure {FIGURE}')
     plt.show()
+
