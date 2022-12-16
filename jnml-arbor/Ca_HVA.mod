@@ -117,9 +117,7 @@ ASSIGNED {
     v (mV)
     celsius (degC)
     temperature (K)
-    eca (mV)
-    
-    
+
     m_forwardRate_x                        : derived variable
     
     m_forwardRate_r (kHz)                  : conditional derived var...

@@ -116,7 +116,7 @@ ASSIGNED {
     v (mV)
     celsius (degC)
     temperature (K)
-    eca (mV)
+
     
     
     m_timeCourse_V                         : derived variable
