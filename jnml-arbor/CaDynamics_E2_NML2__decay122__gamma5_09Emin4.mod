@@ -44,11 +44,6 @@ UNITS {
 }
 
 PARAMETER {
-    surfaceArea (um2)
-    iCa (nA)
-    initialConcentration (mM)
-    initialExtConcentration (mM)
-    
     gamma = 5.09E-4 
     minCai = 1.0E-4 (mM)
     decay = 122 (ms)
@@ -57,12 +52,11 @@ PARAMETER {
 }
 
 ASSIGNED {
-    diam (um)
-    area (um2)
-    
+    iCa (nA)
+    initialConcentration (mM)
+    initialExtConcentration (mM)
     currDensCa (nA / um2)                  : derived variable
     rate_concentration (mM/ms)
-    
 }
 
 STATE {
@@ -74,30 +68,18 @@ STATE {
 INITIAL {
     initialConcentration = cai
     initialExtConcentration = cao
-    rates(v)
-    rates(v) ? To ensure correct initialisation.
-    
     concentration = initialConcentration
-    
     extConcentration = initialExtConcentration
-    
 }
 
 BREAKPOINT {
-    
     SOLVE states METHOD cnexp
-    
-    
+    cai = concentration
 }
 
 DERIVATIVE states {
-    surfaceArea = area   : surfaceArea has units (um2), area (built in to NEURON) is in um^2...
+    iCa = -1 * (0.01) * ica :   iCa has units (nA) ; ica (built in to NEURON) has units (mA/cm2)...
     
-    iCa = -1 * (0.01) * ica * surfaceArea :   iCa has units (nA) ; ica (built in to NEURON) has units (mA/cm2)...
-    
-    currDensCa = iCa / surfaceArea ? evaluable
-    rate_concentration = (  currDensCa   *   gamma  /(2 *  Faraday  *   depth  )) - ((  concentration   -   minCai  ) /   decay  ) ? Note units of all quantities used here need to be consistent!
-    concentration' = rate_concentration
-    cai = concentration 
-    
+    currDensCa = iCa ? evaluable
+    concentration' =  (  currDensCa   *   gamma  /(2 *  Faraday  *   depth  )) - ((  concentration   -   minCai  ) /   decay  ) ? Note units of all quantities used here need to be consistent!
 }
