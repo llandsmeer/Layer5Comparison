@@ -153,7 +153,7 @@ BREAKPOINT {
 
 DERIVATIVE states {
     rates(v)
-    m_q' = rate_m_q 
+    m_q' = ( m_inf  -  m_q ) /  m_tau
     
 }
 
@@ -169,5 +169,4 @@ PROCEDURE rates(v) {
     ? DerivedVariable is based on path: timeCourse/t, on: Component(id=m type=gateHHtauInf), from timeCourse; Component(id=null type=SKv3_1_m_tau_tau)
     m_tauUnscaled = m_timeCourse_t ? path based, prefix = m_
     m_tau = m_tauUnscaled  /  m_rateScale ? evaluable
-    rate_m_q = ( m_inf  -  m_q ) /  m_tau ? Note units of all quantities used here need to be consistent!
 }
