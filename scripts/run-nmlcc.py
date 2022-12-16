@@ -19,19 +19,40 @@ ARBOR_BUILD_CATALOGUE = 'arbor-build-catalogue'
 
 import arbor as A
 
-if len(sys.argv) < 4:
-    print('usage:', sys.argv[0], '<path-in-generated>', '<4a|4b|5a>', '<dt>')
+PLOT = '--plot' in sys.argv
+if PLOT: sys.argv.remove('--plot')
+
+JNML = '--jnml' in sys.argv
+if JNML: sys.argv.remove('--jnml')
+
+if len(sys.argv) < 3:
+    print('usage:', sys.argv[0],
+            '[--plot]',
+            '[--jnml]',
+            'nmlcc|nmlcc-super',
+            '4a|4b|5a',
+            '<dt>',
+            '<tstop>'
+            )
     exit(1)
 
 VERSION = sys.argv[1]
 FIGURE = sys.argv[2]
-dt = float(sys.argv[3])
-PLOT = '--plot' in sys.argv
+dt = float(sys.argv[3]) if len(sys.argv) >= 4 else 0.025
 
 
 alt_tstop = float(sys.argv[4]) if len(sys.argv) == 5 else None
 
 nmlcc_root = Path('../generated') / VERSION
+
+if JNML:
+    cat_dir = Path('../jnml-arbor')
+    cat_so_file = Path('../generated/jnml-arbor.so')
+    VERSION = VERSION + '-pynml'
+else:
+    cat_dir = nmlcc_root / 'cat'
+    cat_so_file = nmlcc_root / 'local-catalogue.so' 
+
 
 HOC_FILE = {
         '4a': 'BAC_firing.hoc',
@@ -62,7 +83,7 @@ class recipe(A.recipe):
     def __init__(self):
         A.recipe.__init__(self)
         self.props = A.neuron_cable_properties()
-        cat = compile(nmlcc_root / 'local-catalogue.so', nmlcc_root / 'cat')
+        cat = compile(cat_so_file, cat_dir)
         self.props.catalogue.extend(cat, 'local_')
         self.cell_to_morph = {'L5PC': 'morphology_L5PC', }
         self.gid_to_cell = ['L5PC', ]
