@@ -3,3 +3,13 @@
 *.so
 /results/
 /generated/x86_64
+INNER_LOOP.txt
+JUWELS
+STATS
+debug/
+generated/eden/
+q.txt
+results_juwels_vectorize
+scripts/fix-perf
+scripts/generated/
+scripts/run/

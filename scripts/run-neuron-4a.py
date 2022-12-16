@@ -218,7 +218,7 @@ run()
 ''')
 t1 = pc()
 print(f'Simulation done, took: {t1-t0:.3f}s')
-
+print(t1-t0)
 with open(f'../results/runtimes', 'a') as f:
     logline = json.dumps(dict(
         method='neuron',

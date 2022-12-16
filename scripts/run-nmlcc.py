@@ -1,12 +1,18 @@
 #!/usr/bin/env python3
 
 import os, sys
+import random
 import json
 import importlib.util
 import pandas as pd
 import subprocess as sp
 from pathlib import Path
 from time import perf_counter as pc
+
+pid = os.getpid()
+cpu = random.choice(list(os.sched_getaffinity(pid)))
+os.sched_setaffinity(pid, {cpu})
+
 
 ARBOR_BUILD_CATALOGUE = 'arbor-build-catalogue'
 
@@ -21,6 +27,9 @@ VERSION = sys.argv[1]
 FIGURE = sys.argv[2]
 dt = float(sys.argv[3])
 PLOT = '--plot' in sys.argv
+
+
+alt_tstop = float(sys.argv[4]) if len(sys.argv) == 5 else None
 
 nmlcc_root = Path('../generated') / VERSION
 
@@ -138,7 +147,9 @@ sim = A.simulation(mdl, ctx, ddc)
 meter_manager.checkpoint('simulation-init', ctx)
 hdl = sim.sample((0, 0), A.regular_schedule(1))
 
-if FIGURE == '4b':
+if alt_tstop is not None:
+    length = alt_tstop
+elif FIGURE == '4b':
     length = 3000
 else:
     length = 600

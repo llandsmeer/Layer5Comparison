@@ -110,99 +110,27 @@ DERIVATIVE dstate {
   SK_E2_gates_z_steadyState_x = (1 + (0.0000000004300000078227839 * SK_E2_gates_z_steadyState_ca_conc^-1)^4.800000190734863)^-1
   Nap_Et2_gates_m_steadyState_x = (1 + exp(-0.21739130885479366 * (52.599998474121094 + v)))^-1
   Nap_Et2_gates_m_reverseRate_x = -0.16666666666666666 * (38 + v)
-  if (Nap_Et2_gates_m_reverseRate_x != 0) {
     Nap_Et2_gates_m_reverseRate_r = 0.7440000176429749 * Nap_Et2_gates_m_reverseRate_x * (1 + -1 * exp(-1 * Nap_Et2_gates_m_reverseRate_x))^-1
-  } else {
-    if (Nap_Et2_gates_m_reverseRate_x == 0) {
-      Nap_Et2_gates_m_reverseRate_r = 0.7440000176429749
-    } else {
-      Nap_Et2_gates_m_reverseRate_r = 0
-    }
-  }
   Nap_Et2_gates_m_forwardRate_x = 0.16666666666666666 * (38 + v)
-  if (Nap_Et2_gates_m_forwardRate_x != 0) {
     Nap_Et2_gates_m_forwardRate_r = 1.0920000076293945 * Nap_Et2_gates_m_forwardRate_x * (1 + -1 * exp(-1 * Nap_Et2_gates_m_forwardRate_x))^-1
-  } else {
-    if (Nap_Et2_gates_m_forwardRate_x == 0) {
-      Nap_Et2_gates_m_forwardRate_r = 1.0920000076293945
-    } else {
-      Nap_Et2_gates_m_forwardRate_r = 0
-    }
-  }
-  if (Nap_Et2_gates_m_forwardRate_r + Nap_Et2_gates_m_reverseRate_r == 0) {
-    Nap_Et2_gates_m_timeCourse_t = 0
-  } else {
-    if (Nap_Et2_gates_m_forwardRate_r + Nap_Et2_gates_m_reverseRate_r > 0) {
       Nap_Et2_gates_m_timeCourse_t = 6 * (Nap_Et2_gates_m_forwardRate_r + Nap_Et2_gates_m_reverseRate_r)^-1
-    } else {
-      Nap_Et2_gates_m_timeCourse_t = 0
-    }
-  }
   Nap_Et2_gates_m_tau = 0.3386521442740891 * Nap_Et2_gates_m_timeCourse_t
   Nap_Et2_gates_h_steadyState_x = (1 + exp(0.1 * (48.79999923706055 + v)))^-1
   Nap_Et2_gates_h_reverseRate_x = 0.38022812033701325 * (64.4000015258789 + v)
-  if (Nap_Et2_gates_h_reverseRate_x != 0) {
     Nap_Et2_gates_h_reverseRate_r = 0.00001825219987949822 * Nap_Et2_gates_h_reverseRate_x * (1 + -1 * exp(-1 * Nap_Et2_gates_h_reverseRate_x))^-1
-  } else {
-    if (Nap_Et2_gates_h_reverseRate_x == 0) {
-      Nap_Et2_gates_h_reverseRate_r = 0.00001825219987949822
-    } else {
-      Nap_Et2_gates_h_reverseRate_r = 0
-    }
-  }
   Nap_Et2_gates_h_forwardRate_x = -0.21598271604378827 * (17 + v)
-  if (Nap_Et2_gates_h_forwardRate_x != 0) {
     Nap_Et2_gates_h_forwardRate_r = 0.000013334400136955082 * Nap_Et2_gates_h_forwardRate_x * (1 + -1 * exp(-1 * Nap_Et2_gates_h_forwardRate_x))^-1
-  } else {
-    if (Nap_Et2_gates_h_forwardRate_x == 0) {
-      Nap_Et2_gates_h_forwardRate_r = 0.000013334400136955082
-    } else {
-      Nap_Et2_gates_h_forwardRate_r = 0
-    }
-  }
   Nap_Et2_gates_h_tau = (2.9528825283050537 * (Nap_Et2_gates_h_forwardRate_r + Nap_Et2_gates_h_reverseRate_r))^-1
   NaTa_t_gates_m_reverseRate_x = -0.16666666666666666 * (38 + v)
-  if (NaTa_t_gates_m_reverseRate_x != 0) {
     NaTa_t_gates_m_reverseRate_r = 0.7440000176429749 * NaTa_t_gates_m_reverseRate_x * (1 + -1 * exp(-1 * NaTa_t_gates_m_reverseRate_x))^-1
-  } else {
-    if (NaTa_t_gates_m_reverseRate_x == 0) {
-      NaTa_t_gates_m_reverseRate_r = 0.7440000176429749
-    } else {
-      NaTa_t_gates_m_reverseRate_r = 0
-    }
-  }
   NaTa_t_gates_m_forwardRate_x = 0.16666666666666666 * (38 + v)
-  if (NaTa_t_gates_m_forwardRate_x != 0) {
     NaTa_t_gates_m_forwardRate_r = 1.0920000076293945 * NaTa_t_gates_m_forwardRate_x * (1 + -1 * exp(-1 * NaTa_t_gates_m_forwardRate_x))^-1
-  } else {
-    if (NaTa_t_gates_m_forwardRate_x == 0) {
-      NaTa_t_gates_m_forwardRate_r = 1.0920000076293945
-    } else {
-      NaTa_t_gates_m_forwardRate_r = 0
-    }
-  }
   NaTa_t_gates_m_inf = NaTa_t_gates_m_forwardRate_r * (NaTa_t_gates_m_forwardRate_r + NaTa_t_gates_m_reverseRate_r)^-1
   NaTa_t_gates_m_tau = (2.9528825283050537 * (NaTa_t_gates_m_forwardRate_r + NaTa_t_gates_m_reverseRate_r))^-1
   NaTa_t_gates_h_reverseRate_x = 0.16666666666666666 * (66 + v)
-  if (NaTa_t_gates_h_reverseRate_x != 0) {
     NaTa_t_gates_h_reverseRate_r = 0.09000000357627869 * NaTa_t_gates_h_reverseRate_x * (1 + -1 * exp(-1 * NaTa_t_gates_h_reverseRate_x))^-1
-  } else {
-    if (NaTa_t_gates_h_reverseRate_x == 0) {
-      NaTa_t_gates_h_reverseRate_r = 0.09000000357627869
-    } else {
-      NaTa_t_gates_h_reverseRate_r = 0
-    }
-  }
   NaTa_t_gates_h_forwardRate_x = -0.16666666666666666 * (66 + v)
-  if (NaTa_t_gates_h_forwardRate_x != 0) {
     NaTa_t_gates_h_forwardRate_r = 0.09000000357627869 * NaTa_t_gates_h_forwardRate_x * (1 + -1 * exp(-1 * NaTa_t_gates_h_forwardRate_x))^-1
-  } else {
-    if (NaTa_t_gates_h_forwardRate_x == 0) {
-      NaTa_t_gates_h_forwardRate_r = 0.09000000357627869
-    } else {
-      NaTa_t_gates_h_forwardRate_r = 0
-    }
-  }
   NaTa_t_gates_h_inf = NaTa_t_gates_h_forwardRate_r * (NaTa_t_gates_h_forwardRate_r + NaTa_t_gates_h_reverseRate_r)^-1
   NaTa_t_gates_h_tau = (2.9528825283050537 * (NaTa_t_gates_h_forwardRate_r + NaTa_t_gates_h_reverseRate_r))^-1
   K_Tst_gates_m_steadyState_x = (1 + exp(-0.05263157894736842 * (10 + v)))^-1
@@ -229,15 +157,7 @@ DERIVATIVE dstate {
   Ca_LVAst_gates_h_tau = 0.3386521442740891 * Ca_LVAst_gates_h_timeCourse_t
   Ca_HVA_gates_m_reverseRate_r = 0.9399999976158142 * exp(-0.058823529411764705 * (75 + v))
   Ca_HVA_gates_m_forwardRate_x = 0.26315789803903855 * (27 + v)
-  if (Ca_HVA_gates_m_forwardRate_x != 0) {
     Ca_HVA_gates_m_forwardRate_r = 0.20900000631809235 * Ca_HVA_gates_m_forwardRate_x * (1 + -1 * exp(-1 * Ca_HVA_gates_m_forwardRate_x))^-1
-  } else {
-    if (Ca_HVA_gates_m_forwardRate_x == 0) {
-      Ca_HVA_gates_m_forwardRate_r = 0.20900000631809235
-    } else {
-      Ca_HVA_gates_m_forwardRate_r = 0
-    }
-  }
   Ca_HVA_gates_m_inf = Ca_HVA_gates_m_forwardRate_r * (Ca_HVA_gates_m_forwardRate_r + Ca_HVA_gates_m_reverseRate_r)^-1
   Ca_HVA_gates_m_tau = (Ca_HVA_gates_m_forwardRate_r + Ca_HVA_gates_m_reverseRate_r)^-1
   Ca_HVA_gates_h_forwardRate_r = 0.0004569999873638153 * exp(-0.02 * (13 + v))
