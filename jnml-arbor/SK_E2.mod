@@ -90,11 +90,7 @@ ASSIGNED {
     temperature (K)
     ek (mV)
     
-    cai (mM)
-    
-    cao (mM)
-    
-    
+
     z_timeCourse_V                         : derived variable
     
     z_timeCourse_ca_conc                   : derived variable
@@ -138,8 +134,8 @@ INITIAL {
     
     temperature = celsius + 273.15
     
-    rates(v)
-    rates(v) ? To ensure correct initialisation.
+    rates(v, cai)
+    rates(v, cai) ? To ensure correct initialisation.
     
     z_q = z_inf
     
@@ -156,6 +152,7 @@ BREAKPOINT {
     
     ? DerivedVariable is based on path: gates[*]/fcond, on: Component(id=SK_E2 type=ionChannelHH), from gates; Component(id=z type=gateHHtauInf)
     ? multiply applied to all instances of fcond in: <gates> ([Component(id=z type=gateHHtauInf)]))
+    z_fcond = z_q ^ z_instances ? evaluable
     fopen0 = z_fcond ? path based, prefix = 
     
     fopen = conductanceScale  *  fopen0 ? evaluable
@@ -167,12 +164,12 @@ BREAKPOINT {
 }
 
 DERIVATIVE states {
-    rates(v)
-    z_q' = rate_z_q 
+    rates(v, cai)
+    z_q' = ( z_inf  -  z_q ) /  z_tau
     
 }
 
-PROCEDURE rates(v) {
+PROCEDURE rates(v, cai) {
     LOCAL caConc
     
     caConc = cai
@@ -188,7 +185,7 @@ PROCEDURE rates(v) {
     
     z_rateScale = 1 
     
-    z_fcond = z_q ^ z_instances ? evaluable
+
     ? DerivedVariable is based on path: steadyState/x, on: Component(id=z type=gateHHtauInf), from steadyState; Component(id=null type=SK_E2_z_inf_inf)
     z_inf = z_steadyState_x ? path based, prefix = z_
     
@@ -196,37 +193,4 @@ PROCEDURE rates(v) {
     z_tauUnscaled = z_timeCourse_t ? path based, prefix = z_
     
     z_tau = z_tauUnscaled  /  z_rateScale ? evaluable
-    
-     
-    
-     
-    
-     
-    
-     
-    
-     
-    
-     
-    
-     
-    
-     
-    
-     
-    
-     
-    
-     
-    
-     
-    rate_z_q = ( z_inf  -  z_q ) /  z_tau ? Note units of all quantities used here need to be consistent!
-    
-     
-    
-     
-    
-     
-    
 }
-
