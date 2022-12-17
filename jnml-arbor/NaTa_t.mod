@@ -210,7 +210,10 @@ INITIAL {
 BREAKPOINT {
     
     SOLVE states METHOD cnexp
-    
+
+    h_fcond = h_q ^ h_instances ? evaluable
+    m_fcond = m_q ^ m_instances ? evaluable
+
     ? DerivedVariable is based on path: conductanceScaling[*]/factor, on: Component(id=NaTa_t type=ionChannelHH), from conductanceScaling; null
     ? Path not present in component, using factor: 1
     
@@ -230,39 +233,33 @@ BREAKPOINT {
 
 DERIVATIVE states {
     rates(v)
-    m_q' = rate_m_q 
-    h_q' = rate_h_q 
+    m_q' = ( m_inf  -  m_q ) /  m_tau ? Note units of all quantities used here need to be consistent!
+    h_q' =  ( h_inf  -  h_q ) /  h_tau ? Note units of all quantities used here need to be consistent!
     
 }
 
 PROCEDURE rates(v) {
-    
     m_forwardRate_x = (v -  m_forwardRate_midpoint ) /  m_forwardRate_scale ? evaluable
     if (m_forwardRate_x  != 0)  { 
         m_forwardRate_r = m_forwardRate_rate  *  m_forwardRate_x  / (1 - exp(0 -  m_forwardRate_x )) ? evaluable cdv
     } else if (m_forwardRate_x  == 0)  { 
         m_forwardRate_r = m_forwardRate_rate ? evaluable cdv
     }
-    
     m_reverseRate_x = (v -  m_reverseRate_midpoint ) /  m_reverseRate_scale ? evaluable
     if (m_reverseRate_x  != 0)  { 
         m_reverseRate_r = m_reverseRate_rate  *  m_reverseRate_x  / (1 - exp(0 -  m_reverseRate_x )) ? evaluable cdv
     } else if (m_reverseRate_x  == 0)  { 
         m_reverseRate_r = m_reverseRate_rate ? evaluable cdv
     }
-    
     m_q10Settings_q10 = m_q10Settings_fixedQ10 ? evaluable
     ? DerivedVariable is based on path: q10Settings[*]/q10, on: Component(id=m type=gateHHrates), from q10Settings; Component(id=null type=q10Fixed)
     ? multiply applied to all instances of q10 in: <q10Settings> ([Component(id=null type=q10Fixed)]))
     m_rateScale = m_q10Settings_q10 ? path based, prefix = m_
-    
     ? DerivedVariable is based on path: forwardRate/r, on: Component(id=m type=gateHHrates), from forwardRate; Component(id=null type=HHExpLinearRate)
     m_alpha = m_forwardRate_r ? path based, prefix = m_
-    
     ? DerivedVariable is based on path: reverseRate/r, on: Component(id=m type=gateHHrates), from reverseRate; Component(id=null type=HHExpLinearRate)
     m_beta = m_reverseRate_r ? path based, prefix = m_
-    
-    m_fcond = m_q ^ m_instances ? evaluable
+
     m_inf = m_alpha /( m_alpha + m_beta ) ? evaluable
     m_tau = 1/(( m_alpha + m_beta ) *  m_rateScale ) ? evaluable
     h_forwardRate_x = (v -  h_forwardRate_midpoint ) /  h_forwardRate_scale ? evaluable
@@ -271,70 +268,20 @@ PROCEDURE rates(v) {
     } else if (h_forwardRate_x  == 0)  { 
         h_forwardRate_r = h_forwardRate_rate ? evaluable cdv
     }
-    
     h_reverseRate_x = (v -  h_reverseRate_midpoint ) /  h_reverseRate_scale ? evaluable
     if (h_reverseRate_x  != 0)  { 
         h_reverseRate_r = h_reverseRate_rate  *  h_reverseRate_x  / (1 - exp(0 -  h_reverseRate_x )) ? evaluable cdv
     } else if (h_reverseRate_x  == 0)  { 
         h_reverseRate_r = h_reverseRate_rate ? evaluable cdv
     }
-    
     h_q10Settings_q10 = h_q10Settings_fixedQ10 ? evaluable
     ? DerivedVariable is based on path: q10Settings[*]/q10, on: Component(id=h type=gateHHrates), from q10Settings; Component(id=null type=q10Fixed)
     ? multiply applied to all instances of q10 in: <q10Settings> ([Component(id=null type=q10Fixed)]))
     h_rateScale = h_q10Settings_q10 ? path based, prefix = h_
-    
     ? DerivedVariable is based on path: forwardRate/r, on: Component(id=h type=gateHHrates), from forwardRate; Component(id=null type=HHExpLinearRate)
     h_alpha = h_forwardRate_r ? path based, prefix = h_
-    
     ? DerivedVariable is based on path: reverseRate/r, on: Component(id=h type=gateHHrates), from reverseRate; Component(id=null type=HHExpLinearRate)
     h_beta = h_reverseRate_r ? path based, prefix = h_
-    
-    h_fcond = h_q ^ h_instances ? evaluable
     h_inf = h_alpha /( h_alpha + h_beta ) ? evaluable
     h_tau = 1/(( h_alpha + h_beta ) *  h_rateScale ) ? evaluable
-    
-     
-    
-     
-    
-     
-    
-     
-    
-     
-    
-     
-    
-     
-    
-     
-    
-     
-    
-     
-    
-     
-    
-     
-    rate_m_q = ( m_inf  -  m_q ) /  m_tau ? Note units of all quantities used here need to be consistent!
-    
-     
-    
-     
-    
-     
-    
-     
-    rate_h_q = ( h_inf  -  h_q ) /  h_tau ? Note units of all quantities used here need to be consistent!
-    
-     
-    
-     
-    
-     
-    
-     
-    
 }
-

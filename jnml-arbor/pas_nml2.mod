@@ -25,7 +25,6 @@ NEURON {
 }
 
 UNITS {
-    
     (nA) = (nanoamp)
     (uA) = (microamp)
     (mA) = (milliamp)
@@ -39,30 +38,21 @@ UNITS {
     (um) = (micrometer)
     (umol) = (micromole)
     (S) = (siemens)
-    
 }
 
 PARAMETER {
-    
     gmax = 0  (S/cm2)                       : Will be changed when ion channel mechanism placed on cell!
-    
     conductance = 1.0E-5 (uS)
 }
 
 ASSIGNED {
-    
     gion   (S/cm2)                          : Transient conductance density of the channel? Standard Assigned variables with ionChannel
     v (mV)
     celsius (degC)
     temperature (K)
     e (mV)
-    i (mA/cm2)
-    
-    
     fopen                                  : derived variable
-    
     g (uS)                                 : derived variable
-    
 }
 
 STATE {

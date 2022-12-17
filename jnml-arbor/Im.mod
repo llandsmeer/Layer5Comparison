@@ -142,7 +142,7 @@ INITIAL {
 BREAKPOINT {
     
     SOLVE states METHOD cnexp
-    
+    m_fcond = m_q ^ m_instances ? evaluable
     ? DerivedVariable is based on path: conductanceScaling[*]/factor, on: Component(id=Im type=ionChannelHH), from conductanceScaling; null
     ? Path not present in component, using factor: 1
     
@@ -162,61 +162,21 @@ BREAKPOINT {
 
 DERIVATIVE states {
     rates(v)
-    m_q' = rate_m_q 
+    m_q' = ( m_inf  -  m_q ) /  m_tau ? Note units of all quantities used here need to be consistent!
     
 }
 
 PROCEDURE rates(v) {
-    
     m_forwardRate_r = m_forwardRate_rate  * exp((v -  m_forwardRate_midpoint )/ m_forwardRate_scale ) ? evaluable
     m_reverseRate_r = m_reverseRate_rate  * exp((v -  m_reverseRate_midpoint )/ m_reverseRate_scale ) ? evaluable
     m_q10Settings_q10 = m_q10Settings_fixedQ10 ? evaluable
     ? DerivedVariable is based on path: q10Settings[*]/q10, on: Component(id=m type=gateHHrates), from q10Settings; Component(id=null type=q10Fixed)
     ? multiply applied to all instances of q10 in: <q10Settings> ([Component(id=null type=q10Fixed)]))
     m_rateScale = m_q10Settings_q10 ? path based, prefix = m_
-    
     ? DerivedVariable is based on path: forwardRate/r, on: Component(id=m type=gateHHrates), from forwardRate; Component(id=null type=HHExpRate)
     m_alpha = m_forwardRate_r ? path based, prefix = m_
-    
     ? DerivedVariable is based on path: reverseRate/r, on: Component(id=m type=gateHHrates), from reverseRate; Component(id=null type=HHExpRate)
     m_beta = m_reverseRate_r ? path based, prefix = m_
-    
-    m_fcond = m_q ^ m_instances ? evaluable
     m_inf = m_alpha /( m_alpha + m_beta ) ? evaluable
     m_tau = 1/(( m_alpha + m_beta ) *  m_rateScale ) ? evaluable
-    
-     
-    
-     
-    
-     
-    
-     
-    
-     
-    
-     
-    
-     
-    
-     
-    
-     
-    
-     
-    
-     
-    
-     
-    rate_m_q = ( m_inf  -  m_q ) /  m_tau ? Note units of all quantities used here need to be consistent!
-    
-     
-    
-     
-    
-     
-    
-     
-    
 }
-

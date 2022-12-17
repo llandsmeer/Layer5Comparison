@@ -190,7 +190,8 @@ INITIAL {
 BREAKPOINT {
     
     SOLVE states METHOD cnexp
-    
+    m_fcond = m_q ^ m_instances ? evaluable
+    h_fcond = h_q ^ h_instances ? evaluable
     ? DerivedVariable is based on path: conductanceScaling[*]/factor, on: Component(id=K_Tst type=ionChannelHH), from conductanceScaling; null
     ? Path not present in component, using factor: 1
     
@@ -210,13 +211,11 @@ BREAKPOINT {
 
 DERIVATIVE states {
     rates(v)
-    m_q' = rate_m_q 
-    h_q' = rate_h_q 
-    
+    m_q' = ( m_inf  -  m_q ) /  m_tau ? Note units of all quantities used here need to be consistent!
+    h_q' = ( h_inf  -  h_q ) /  h_tau ? Note units of all quantities used here need to be consistent!
 }
 
 PROCEDURE rates(v) {
-    
     m_timeCourse_V = v /  m_timeCourse_VOLT_SCALE ? evaluable
     m_timeCourse_t = (0.34 + 0.92 * (exp (-1 *(( m_timeCourse_V +81)/59)^2))) *  m_timeCourse_TIME_SCALE ? evaluable
     m_steadyState_x = m_steadyState_rate  / (1 + exp(0 - (v -  m_steadyState_midpoint )/ m_steadyState_scale )) ? evaluable
@@ -224,14 +223,11 @@ PROCEDURE rates(v) {
     ? DerivedVariable is based on path: q10Settings[*]/q10, on: Component(id=m type=gateHHtauInf), from q10Settings; Component(id=null type=q10Fixed)
     ? multiply applied to all instances of q10 in: <q10Settings> ([Component(id=null type=q10Fixed)]))
     m_rateScale = m_q10Settings_q10 ? path based, prefix = m_
-    
-    m_fcond = m_q ^ m_instances ? evaluable
+
     ? DerivedVariable is based on path: steadyState/x, on: Component(id=m type=gateHHtauInf), from steadyState; Component(id=null type=HHSigmoidVariable)
     m_inf = m_steadyState_x ? path based, prefix = m_
-    
     ? DerivedVariable is based on path: timeCourse/t, on: Component(id=m type=gateHHtauInf), from timeCourse; Component(id=null type=K_Tst_m_tau_tau)
     m_tauUnscaled = m_timeCourse_t ? path based, prefix = m_
-    
     m_tau = m_tauUnscaled  /  m_rateScale ? evaluable
     h_timeCourse_V = v /  h_timeCourse_VOLT_SCALE ? evaluable
     h_timeCourse_t = (8 + 49 * (exp (-1 * (( h_timeCourse_V +83)/23)^2))) *  h_timeCourse_TIME_SCALE ? evaluable
@@ -240,57 +236,9 @@ PROCEDURE rates(v) {
     ? DerivedVariable is based on path: q10Settings[*]/q10, on: Component(id=h type=gateHHtauInf), from q10Settings; Component(id=null type=q10Fixed)
     ? multiply applied to all instances of q10 in: <q10Settings> ([Component(id=null type=q10Fixed)]))
     h_rateScale = h_q10Settings_q10 ? path based, prefix = h_
-    
-    h_fcond = h_q ^ h_instances ? evaluable
     ? DerivedVariable is based on path: steadyState/x, on: Component(id=h type=gateHHtauInf), from steadyState; Component(id=null type=HHSigmoidVariable)
     h_inf = h_steadyState_x ? path based, prefix = h_
-    
     ? DerivedVariable is based on path: timeCourse/t, on: Component(id=h type=gateHHtauInf), from timeCourse; Component(id=null type=K_Tst_h_tau_tau)
     h_tauUnscaled = h_timeCourse_t ? path based, prefix = h_
-    
     h_tau = h_tauUnscaled  /  h_rateScale ? evaluable
-    
-     
-    
-     
-    
-     
-    
-     
-    
-     
-    
-     
-    
-     
-    
-     
-    
-     
-    
-     
-    
-     
-    
-     
-    rate_m_q = ( m_inf  -  m_q ) /  m_tau ? Note units of all quantities used here need to be consistent!
-    
-     
-    
-     
-    
-     
-    
-     
-    rate_h_q = ( h_inf  -  h_q ) /  h_tau ? Note units of all quantities used here need to be consistent!
-    
-     
-    
-     
-    
-     
-    
-     
-    
 }
-

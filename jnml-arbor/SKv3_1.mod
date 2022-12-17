@@ -140,6 +140,7 @@ BREAKPOINT {
     
     ? DerivedVariable is based on path: gates[*]/fcond, on: Component(id=SKv3_1 type=ionChannelHH), from gates; Component(id=m type=gateHHtauInf)
     ? multiply applied to all instances of fcond in: <gates> ([Component(id=m type=gateHHtauInf)]))
+    m_fcond = m_q ^ m_instances ? evaluable
     fopen0 = m_fcond ? path based, prefix = 
     
     fopen = conductanceScale  *  fopen0 ? evaluable
@@ -152,59 +153,20 @@ BREAKPOINT {
 
 DERIVATIVE states {
     rates(v)
-    m_q' = rate_m_q 
+    m_q' = ( m_inf  -  m_q ) /  m_tau
     
 }
 
 PROCEDURE rates(v) {
-    
     m_timeCourse_V = v /  m_timeCourse_VOLT_SCALE ? evaluable
     m_timeCourse_t = (4/(1 + exp( ( m_timeCourse_V +46.56) / (-44.140) ))) *  m_timeCourse_TIME_SCALE ? evaluable
     m_steadyState_x = m_steadyState_rate  / (1 + exp(0 - (v -  m_steadyState_midpoint )/ m_steadyState_scale )) ? evaluable
     ? DerivedVariable is based on path: q10Settings[*]/q10, on: Component(id=m type=gateHHtauInf), from q10Settings; null
     ? Path not present in component, using factor: 1
-    
     m_rateScale = 1 
-    
-    m_fcond = m_q ^ m_instances ? evaluable
     ? DerivedVariable is based on path: steadyState/x, on: Component(id=m type=gateHHtauInf), from steadyState; Component(id=null type=HHSigmoidVariable)
     m_inf = m_steadyState_x ? path based, prefix = m_
-    
     ? DerivedVariable is based on path: timeCourse/t, on: Component(id=m type=gateHHtauInf), from timeCourse; Component(id=null type=SKv3_1_m_tau_tau)
     m_tauUnscaled = m_timeCourse_t ? path based, prefix = m_
-    
     m_tau = m_tauUnscaled  /  m_rateScale ? evaluable
-    
-     
-    
-     
-    
-     
-    
-     
-    
-     
-    
-     
-    
-     
-    
-     
-    
-     
-    
-     
-    
-     
-    
-     
-    rate_m_q = ( m_inf  -  m_q ) /  m_tau ? Note units of all quantities used here need to be consistent!
-    
-     
-    
-     
-    
-     
-    
 }
-
