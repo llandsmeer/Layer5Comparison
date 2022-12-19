@@ -119,7 +119,7 @@ cd $SCRATCH/$USER
 git clone https://github.com/llandsmeer/Layer5Comparison
 cd Layer5Comparison
 
-pip3 install pandas neuron matplotlib
+pip3 install pandas neuron eden-simulator
 
 # screen ?
 srun --account slns --partition batch --mem 80G --time 20:00:00 --pty bash

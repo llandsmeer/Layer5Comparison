@@ -17,3 +17,4 @@ scripts/run/
 /generated/pynml-neuron/*.0.dat
 /generated/pynml-neuron/simulator.props
 /generated/pynml-neuron/time.dat
+

@@ -39,6 +39,8 @@ do
     dt=0.025
     run python3 run-neuron-pynml.py
     run python3 run-nmlcc.py --jnml nmlcc 4a
+    run python3 run-nmlcc.py --jnml nmlcc 4b
+    run python3 run-nmlcc.py --jnml nmlcc 5a
     run python3 run-eden.py
     run python3 run-nmlcc.py nmlcc-super 4a ${dt}
     run python3 run-nmlcc.py nmlcc-super 4b ${dt}
