@@ -14,7 +14,6 @@ NEURON {
     USEION na WRITE ina VALENCE 1 ? Assuming valence = 1; TODO check this!!
     
     RANGE gion                           
-    RANGE gmax                              : Will be changed when ion channel mechanism placed on cell!
     RANGE conductance                       : parameter
     
     RANGE g                                 : exposure
@@ -100,8 +99,6 @@ UNITS {
 }
 
 PARAMETER {
-    
-    gmax = 0  (S/cm2)                       : Will be changed when ion channel mechanism placed on cell!
     
     conductance = 1.0E-5 (uS)
     m_instances = 3 
@@ -225,9 +222,8 @@ BREAKPOINT {
     
     fopen = conductanceScale  *  fopen0 ? evaluable
     g = conductance  *  fopen ? evaluable
-    gion = gmax * fopen 
     
-    ina = gion * (v - ena)
+    ina = g * (v - ena)
     
 }
 

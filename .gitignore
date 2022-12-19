@@ -13,3 +13,7 @@ results_juwels_vectorize
 scripts/fix-perf
 scripts/generated/
 scripts/run/
+/generated/*/log
+/generated/pynml-neuron/*.0.dat
+/generated/pynml-neuron/simulator.props
+/generated/pynml-neuron/time.dat

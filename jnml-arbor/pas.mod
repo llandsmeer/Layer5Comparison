@@ -10,12 +10,11 @@ COMMENT
 ENDCOMMENT
 
 NEURON {
-    SUFFIX pas_nml2
+    SUFFIX pas
     NONSPECIFIC_CURRENT i
     RANGE e
     
     RANGE gion                           
-    RANGE gmax                              : Will be changed when ion channel mechanism placed on cell!
     RANGE conductance                       : parameter
     
     RANGE g                                 : exposure
@@ -41,8 +40,8 @@ UNITS {
 }
 
 PARAMETER {
-    gmax = 0  (S/cm2)                       : Will be changed when ion channel mechanism placed on cell!
     conductance = 1.0E-5 (uS)
+    e = 0 (mV)
 }
 
 ASSIGNED {
@@ -50,7 +49,6 @@ ASSIGNED {
     v (mV)
     celsius (degC)
     temperature (K)
-    e (mV)
     fopen                                  : derived variable
     g (uS)                                 : derived variable
 }
@@ -72,7 +70,7 @@ BREAKPOINT {
     rates(v)
     fopen = 1 ? evaluable
     g = conductance ? evaluable
-    gion = gmax * fopen 
+    gion = conductance * fopen 
     
     i = gion * (v - e)
     

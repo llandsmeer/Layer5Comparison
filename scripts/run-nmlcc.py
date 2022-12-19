@@ -47,12 +47,13 @@ nmlcc_root = Path('../generated') / VERSION
 
 if JNML:
     cat_dir = Path('../jnml-arbor')
-    cat_so_file = Path('../generated/jnml-arbor.so')
+    cat_so_file = Path('../generated/jnml-arbor-catalogue.so')
+    acc_path = '../jnml-arbor/L5PC.acc'
     VERSION = VERSION + '-pynml'
 else:
     cat_dir = nmlcc_root / 'cat'
     cat_so_file = nmlcc_root / 'local-catalogue.so' 
-
+    acc_path = f'{nmlcc_root}/acc/L5PC.acc'
 
 HOC_FILE = {
         '4a': 'BAC_firing.hoc',
@@ -76,7 +77,7 @@ def compile(fn, cat):
         recompile = True
     if recompile:
         sp.run(f'arbor-build-catalogue local {cat}', shell=True, check=True)
-        os.rename(fn.name, fn)
+        os.rename('local-catalogue.so', fn)
     return A.load_catalogue(fn)
 
 class recipe(A.recipe):
@@ -117,7 +118,7 @@ class recipe(A.recipe):
         if gid in self.gid_to_labels:
             for seg, frac in self.gid_to_labels[gid]:
                 lbl[f'seg_{seg}_frac_{frac}'] = f'(on-components {frac} (segment {seg}))'
-        dec = A.load_component(f'{nmlcc_root}/acc/{cid}.acc').component
+        dec = A.load_component(acc_path).component
 
 
         #  forsec all {

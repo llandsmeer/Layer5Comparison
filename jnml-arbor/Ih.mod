@@ -11,10 +11,11 @@ ENDCOMMENT
 
 NEURON {
     SUFFIX Ih
-    USEION hcn WRITE ihcn VALENCE 1 ? Assuming valence = 1; TODO check this!!
+
+    NONSPECIFIC_CURRENT ihcn
     
+    RANGE ehcn
     RANGE gion                           
-    RANGE gmax                              : Will be changed when ion channel mechanism placed on cell!
     RANGE conductance                       : parameter
     
     RANGE g                                 : exposure
@@ -69,8 +70,6 @@ UNITS {
 
 PARAMETER {
     
-    gmax = 0  (S/cm2)                       : Will be changed when ion channel mechanism placed on cell!
-    
     conductance = 1.0E-5 (uS)
     m_instances = 1 
     m_forwardRate_rate = 0.076517 (kHz)
@@ -79,6 +78,7 @@ PARAMETER {
     m_reverseRate_rate = 0.193 (kHz)
     m_reverseRate_midpoint = 0 (mV)
     m_reverseRate_scale = 33.1 (mV)
+    ehcn = -45 (mV)
 }
 
 ASSIGNED {
@@ -87,7 +87,6 @@ ASSIGNED {
     v (mV)
     celsius (degC)
     temperature (K)
-    ehcn (mV)
     
     
     m_forwardRate_x                        : derived variable
@@ -125,7 +124,6 @@ STATE {
 }
 
 INITIAL {
-    ehcn = -45.0
     
     temperature = celsius + 273.15
     
@@ -151,9 +149,8 @@ BREAKPOINT {
     
     fopen = conductanceScale  *  fopen0 ? evaluable
     g = conductance  *  fopen ? evaluable
-    gion = gmax * fopen 
     
-    ihcn = gion * (v - ehcn)
+    ihcn = g * (v - ehcn)
     
 }
 
