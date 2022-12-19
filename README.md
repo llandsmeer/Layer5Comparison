@@ -1,19 +1,37 @@
 # Layer5Comparison
 
+# Figure 4 comparison table:
+
+Over 5 trials
+
+| Simulator | Translator  | Timestep         | Run time (sim s / bio s) | Relative speed  |
+|-----------|-------------|------------------|--------------------------|-----------------|
+| Arbor     | nmlcc-super | 0.025            | 1.36                     | fastest         |
+| Arbor     | nmlcc       | 0.025            | 1.55                     | 14.220% slower  |
+| Arbor     | jnml        | 0.025            | 3.00                     | 121.379% slower |
+| EDEN      | -           | 0.025            | 5.60                     | 313.372% slower |
+| NEURON    | hand tuned  | 0.025            | 9.75                     | 619.610% slower |
+| NEURON    | jnml        | 0.025            | 11.83                    | 773.229% slower |
+| NEURON    | hand tuned  | Adaptive (cvode) | 2.22                     |                 |
+
+## All results:
+
 ```
 # Performance analysis for figure 4a
  analysis for dt=0.025
-    nmlcc-super          1.35 sim.s/bio.s     (fastest)            5 trials
-    nmlcc                1.55 sim.s/bio.s     (14.374% slower)     5 trials
-    nmlcc-pynml          2.82 sim.s/bio.s     (108.750% slower)    5 trials
+    arbor-nmlcc-super    1.35 sim.s/bio.s     (fastest)            5 trials
+    arbor-nmlcc          1.55 sim.s/bio.s     (14.374% slower)     5 trials
+    arbor-jnml           2.82 sim.s/bio.s     (108.750% slower)    5 trials
     neuron               9.90 sim.s/bio.s     (631.978% slower)    5 trials
  analysis for dt=cvode
     neuron               0.91 sim.s/bio.s     (fastest)            5 trials
 
 # Performance analysis for figure 4b
  analysis for dt=0.025
-    nmlcc-super          1.36 sim.s/bio.s     (fastest)            5 trials
-    nmlcc                1.55 sim.s/bio.s     (14.220% slower)     5 trials
+    arbor-nmlcc-super    1.36 sim.s/bio.s     (fastest)            5 trials
+    arbor-nmlcc          1.55 sim.s/bio.s     (14.220% slower)     5 trials
+    arbor-jnml           3.00 sim.s/bio.s     (121.379% slower)    5 trials
+    eden                 5.60 sim.s/bio.s     (313.372% slower)    5 trials
     neuron               9.75 sim.s/bio.s     (619.610% slower)    5 trials
     neuron-jnml          11.83 sim.s/bio.s    (773.229% slower)    5 trials
  analysis for dt=cvode
@@ -21,8 +39,9 @@
 
 # Performance analysis for figure 5a
  analysis for dt=0.025
-    nmlcc-super          1.36 sim.s/bio.s     (fastest)            5 trials
-    nmlcc                1.56 sim.s/bio.s     (15.028% slower)     5 trials
+    arbor-nmlcc-super    1.36 sim.s/bio.s     (fastest)            5 trials
+    arbor-nmlcc          1.56 sim.s/bio.s     (15.028% slower)     5 trials
+    arbor-jnml           3.13 sim.s/bio.s     (131.072% slower)    5 trials
     neuron               9.83 sim.s/bio.s     (625.059% slower)    5 trials
  analysis for dt=cvode
     neuron               0.86 sim.s/bio.s     (fastest)            5 trials
