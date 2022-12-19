@@ -4,15 +4,15 @@
 
 Over 5 trials
 
-| Simulator | Translator  | Timestep         | Run time (sim s / bio s) | Relative speed  |
-|-----------|-------------|------------------|--------------------------|-----------------|
-| Arbor     | nmlcc-super | 0.025            | 1.36                     | fastest         |
-| Arbor     | nmlcc       | 0.025            | 1.55                     | 14.220% slower  |
-| Arbor     | jnml        | 0.025            | 3.00                     | 121.379% slower |
-| EDEN      | -           | 0.025            | 5.60                     | 313.372% slower |
-| NEURON    | hand tuned  | 0.025            | 9.75                     | 619.610% slower |
-| NEURON    | jnml        | 0.025            | 11.83                    | 773.229% slower |
-| NEURON    | hand tuned  | Adaptive (cvode) | 2.22                     |                 |
+| Simulator | Version           | Translator  | Timestep         | Run time (sim s / bio s) | Relative speed  |   |
+|-----------|-------------------|-------------|------------------|--------------------------|-----------------|---|
+| Arbor     | 0.8.1-dev (+SIMD) | nmlcc-super | 0.025            | 1.36                     | fastest         |   |
+| Arbor     | 0.8.1-dev (+SIMD) | nmlcc       | 0.025            | 1.55                     | 14.220% slower  |   |
+| Arbor     | 0.8.1-dev (+SIMD) | jnml        | 0.025            | 3.00                     | 121.379% slower |   |
+| EDEN      | 0.2.0             | -           | 0.025            | 5.60                     | 313.372% slower |   |
+| NEURON    | 8.2.1             | hand tuned  | 0.025            | 9.75                     | 619.610% slower |   |
+| NEURON    | 8.2.1             | jnml        | 0.025            | 11.83                    | 773.229% slower |   |
+| NEURON    | 8.2.1             | hand tuned  | Adaptive (cvode) | 2.22                     |                 |   |
 
 ## All results:
 
